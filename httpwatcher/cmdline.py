@@ -49,6 +49,7 @@ def watch(static_root, watch_paths=None, on_reload=None, host='localhost', port=
     server.listen()
 
     try:
+        asyncio.set_event_loop(asyncio.new_event_loop())
         tornado.ioloop.IOLoop.current().start()
     except KeyboardInterrupt:
         server.shutdown()

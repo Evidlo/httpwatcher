@@ -89,6 +89,7 @@ I/O loop:
 ```python
 from httpwatcher import HttpWatcherServer
 from tornado.ioloop import IOLoop
+import asyncio
 
 def custom_callback():
     print("Web server reloading!")
@@ -108,6 +109,7 @@ server.listen()
 
 try:
     # will keep serving until someone hits Ctrl+C
+    asyncio.set_event_loop(asyncio.new_event_loop())
     IOLoop.current().start()
 except KeyboardInterrupt:
     server.shutdown()
